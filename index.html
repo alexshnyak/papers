@@ -7,14 +7,14 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --color-matcha: #a6ba4c; 
             --color-gelato: #eaa3a2;
             --color-blush: #f2d9db;
-            --color-bg-hero: #f4f3ee; /* Цвет дорогой матовой бумаги */
+            --color-bg-hero: #f4f3ee; 
             --text-dark: #1a1a1a;
             --text-light: #fbfbfa;
             --border-overlay: rgba(26, 26, 26, 0.08);
@@ -42,17 +42,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 10%;
+            padding: 20px 8%;
             position: fixed;
             width: 100%;
             z-index: 100;
             border-bottom: 1px solid var(--border-overlay);
             background: rgba(253, 251, 247, 0.85);
             backdrop-filter: blur(20px);
+            transition: padding 0.3s ease;
         }
 
         .logo {
-            font-size: 34px;
+            font-size: clamp(28px, 3vw, 34px);
             font-weight: 800;
             letter-spacing: -1.5px;
             text-transform: lowercase;
@@ -63,11 +64,11 @@
 
         nav {
             display: flex;
-            gap: 35px;
+            gap: clamp(15px, 2.5vw, 35px);
         }
 
         nav a {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -78,12 +79,6 @@
 
         nav a:hover {
             opacity: 0.6;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
         }
 
         .header-badge {
@@ -98,11 +93,11 @@
             white-space: nowrap;
         }
 
-        /* --- НОВЫЙ ХЕРО-РАЗДЕЛ (МИНИМАЛИЗМ И СТИЛЬ) --- */
+        /* --- ГЛАВНЫЙ ЭКРАН С АДАПТИВОМ ПОД НОУТЫ И МОБИЛКИ --- */
         .hero-section {
             min-height: 100vh;
             background-color: var(--color-bg-hero);
-            padding: 160px 10% 80px 10%;
+            padding: 140px 8% 60px 8%;
             display: flex;
             align-items: center;
             position: relative;
@@ -119,7 +114,7 @@
 
         .hero-badge-tag {
             display: inline-block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -129,12 +124,13 @@
             padding-bottom: 4px;
         }
 
+        /* Умный размер шрифта для заголовка */
         .hero-section h1 {
-            font-size: 68px;
+            font-size: clamp(34px, 4.5vw, 64px);
             font-weight: 800;
-            line-height: 1.05;
+            line-height: 1.1;
             letter-spacing: -2px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .hero-section h1 span {
@@ -142,22 +138,27 @@
             font-style: italic;
         }
 
+        /* Управление переносом строки */
+        .desktop-only {
+            display: inline;
+        }
+
         .hero-desc {
-            font-size: 18px;
+            font-size: clamp(15px, 1.2vw, 17px);
             line-height: 1.6;
             color: #444;
             max-width: 540px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .hero-features {
             display: flex;
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: clamp(15px, 2vw, 30px);
+            margin-bottom: 35px;
         }
 
         .hero-feat-item {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -166,53 +167,50 @@
 
         .hero-feat-item span {
             display: block;
-            font-size: 24px;
+            font-size: clamp(18px, 2vw, 24px);
             font-weight: 300;
             color: #888;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-black, .btn-outline {
+            padding: 16px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-align: center;
         }
 
         .btn-black {
             background: var(--text-dark);
             color: #ffffff;
-            padding: 18px 40px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: opacity 0.3s ease;
+            border: 1px solid var(--text-dark);
         }
-
         .btn-black:hover { opacity: 0.9; }
 
         .btn-outline {
             border: 1px solid var(--text-dark);
             color: var(--text-dark);
-            padding: 18px 40px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: background 0.3s ease;
         }
-
         .btn-outline:hover { background: rgba(0,0,0,0.03); }
 
         .hero-visual {
             position: relative;
-            height: 550px;
+            height: clamp(350px, 40vw, 550px);
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
         }
 
         .cans-composite {
@@ -223,29 +221,30 @@
 
         .can-composite-img {
             position: absolute;
-            height: 420px;
+            height: 80%;
             width: auto;
             object-fit: contain;
-            transition: transform 0.5s ease;
-            filter: drop-shadow(0px 30px 50px rgba(0,0,0,0.15));
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: drop-shadow(0px 20px 40px rgba(0,0,0,0.12));
         }
 
-        /* Стильное журнальное наложение банок друг на друга */
-        .can-matcha-hero { z-index: 3; bottom: 40px; left: 25%; transform: rotate(-4deg); }
-        .can-grape-hero { z-index: 2; bottom: 80px; left: 5%; transform: rotate(-15deg) scale(0.95); opacity: 0.9; }
-        .can-pear-hero { z-index: 1; bottom: 60px; right: 10%; transform: rotate(12deg) scale(0.9); opacity: 0.85; }
+        /* Позиционирование банок для эффекта разворота журнала */
+        .can-matcha-hero { z-index: 3; bottom: 10%; left: 30%; transform: rotate(-4deg); }
+        .can-grape-hero { z-index: 2; bottom: 16%; left: 10%; transform: rotate(-15deg) scale(0.95); opacity: 0.9; }
+        .can-pear-hero { z-index: 1; bottom: 13%; right: 15%; transform: rotate(12deg) scale(0.9); opacity: 0.85; }
 
-        /* Поведение при наведении — банки красиво разъезжаются */
-        .hero-visual:hover .can-grape-hero { transform: translate(-30px, -10px) rotate(-18deg) scale(0.95); }
-        .hero-visual:hover .can-pear-hero { transform: translate(30px, -10px) rotate(16deg) scale(0.9); }
+        /* Ховер-эффект на десктопах */
+        @media (hover: hover) {
+            .hero-visual:hover .can-grape-hero { transform: translate(-25px, -10px) rotate(-18deg) scale(0.95); }
+            .hero-visual:hover .can-pear-hero { transform: translate(25px, -10px) rotate(16deg) scale(0.9); }
+        }
 
-        /* ------------------------------------------- */
-
+        /* --- СЕКЦИИ ВКУСОВ --- */
         .section-flavor {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 140px 10% 80px 10%;
+            padding: 120px 8% 60px 8%;
             position: relative;
             border-bottom: 1px solid var(--border-overlay);
         }
@@ -262,33 +261,33 @@
 
         .container {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1.1fr 0.9fr;
             width: 100%;
             align-items: center;
-            gap: 60px;
+            gap: 50px;
             position: relative;
             z-index: 2;
         }
 
         .flavor-text h1 {
-            font-size: 64px;
+            font-size: clamp(32px, 4vw, 56px);
             line-height: 1.1;
             font-weight: 800;
-            letter-spacing: -2px;
+            letter-spacing: -1.5px;
             margin-bottom: 25px;
         }
 
         .flavor-desc {
-            font-size: 17px;
+            font-size: clamp(15px, 1.1vw, 17px);
             line-height: 1.6;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             max-width: 540px;
             opacity: 0.9;
         }
 
         .flavor-points {
             list-style: none;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -311,12 +310,13 @@
         .flavor-icons {
             display: flex;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
         }
 
         .icon-item {
-            width: 80px;
-            height: 80px;
+            width: 76px;
+            height: 76px;
             border-radius: 50%;
             border: 1px solid var(--border-overlay);
             display: flex;
@@ -329,14 +329,8 @@
             line-height: 1.3;
         }
 
-        .flavor-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
         .can-wrapper {
-            height: 500px;
+            height: clamp(320px, 35vw, 480px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -346,35 +340,37 @@
             max-height: 100%;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px 20px 40px rgba(0,0,0,0.12));
+            filter: drop-shadow(0px 20px 40px rgba(0,0,0,0.1));
         }
 
         .cta-btn {
             display: inline-block;
-            padding: 16px 40px;
+            padding: 16px 36px;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-align: center;
         }
         #matcha .cta-btn { background: var(--text-light); color: var(--text-dark); }
         #grape .cta-btn { background: var(--color-gelato); color: white; }
         #pear .cta-btn { background: var(--color-matcha); color: white; }
 
         .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
 
+        /* БЕГУЩАЯ СТРОКА */
         .marquee {
             background: var(--text-dark);
             color: #fbfbfa;
-            padding: 22px 0;
+            padding: 20px 0;
             overflow: hidden;
             white-space: nowrap;
             display: flex;
@@ -383,7 +379,7 @@
         .marquee-track {
             display: inline-block;
             animation: marquee 25s linear infinite;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -396,48 +392,49 @@
             100% { transform: translate3d(-50%, 0, 0); }
         }
 
+        /* СЕТКА МАГАЗИНОВ */
         .shop-section {
-            padding: 100px 10%;
+            padding: 80px 8%;
             background-color: var(--color-blush);
             border-bottom: 1px solid var(--border-overlay);
         }
 
         .section-title {
-            font-size: 42px;
+            font-size: clamp(28px, 3.5vw, 42px);
             font-weight: 800;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             letter-spacing: -1.5px;
         }
 
         .section-subtitle {
-            font-size: 15px;
+            font-size: 14px;
             color: #4a4a4a;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .shop-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
         }
 
         .shop-card {
             background: #ffffff;
             border: 1px solid var(--border-overlay);
-            padding: 35px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 220px;
+            min-height: 230px;
             transition: all 0.3s ease;
             border-radius: 4px;
         }
 
         .shop-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.04);
         }
 
         .shop-type {
@@ -450,18 +447,17 @@
         }
 
         .shop-card h3 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 10px;
-            color: var(--text-dark);
         }
 
         .shop-card p {
-            font-size: 14px;
+            font-size: 13.5px;
             color: #555;
             line-height: 1.5;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .shop-link {
@@ -469,31 +465,34 @@
             font-weight: 700;
             color: var(--text-dark);
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
         }
 
+        /* ТЕХНИЧЕСКАЯ ТАБЛИЦА */
         .tech-section {
-            padding: 100px 10%;
+            padding: 80px 8%;
             background-color: var(--color-matcha);
             color: var(--text-light);
         }
 
         .tech-section .section-subtitle { color: #e2ebd0; }
 
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Скролл для совсем маленьких экранов */
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
         .tech-table {
             width: 100%;
             border-collapse: collapse;
             background: #ffffff;
-            border: 1px solid var(--border-overlay);
             color: var(--text-dark);
-            border-radius: 4px;
-            overflow: hidden;
+            min-width: 600px;
         }
 
         .tech-table th, .tech-table td {
-            padding: 20px 25px;
+            padding: 18px 22px;
             text-align: left;
             border-bottom: 1px solid var(--border-overlay);
             font-size: 14px;
@@ -511,7 +510,7 @@
         footer {
             background: #111111;
             color: #888888;
-            padding: 50px 10% 40px 10%;
+            padding: 40px 8% 30px 8%;
             text-align: center;
             font-size: 13px;
             font-weight: 600;
@@ -523,276 +522,33 @@
             align-items: center;
             justify-content: center;
             gap: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-
-        footer .social-link-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-            text-decoration: none;
-        }
-
-        footer .social-link-item:hover { transform: translateY(-2px); }
 
         footer .social-icon-img {
-            height: 22px;
-            width: auto;
-            object-fit: contain;
-            border-radius: 4px;
-            opacity: 0.6;
+            height: 20px;
+            opacity: 0.5;
             transition: opacity 0.2s ease;
         }
 
         footer .social-link-item:hover .social-icon-img { opacity: 1; }
 
-        @media (max-width: 968px) {
-            header { padding: 15px 5%; flex-direction: column; gap: 15px; position: absolute; }
-            nav { gap: 15px; }
-            .header-right { flex-direction: column; gap: 10px; }
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-section h1 { font-size: 44px; }
-            .hero-features { justify-content: center; }
-            .hero-buttons { justify-content: center; }
-            .hero-visual { height: 400px; }
-            .can-composite-img { height: 300px; position: relative; left: auto !important; right: auto !important; margin: 0 -20px; }
-            .can-matcha-hero { z-index: 3; }
-            .container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-            .flavor-text h1 { font-size: 40px; }
-            .flavor-icons { justify-content: center; }
-            .can-wrapper { height: 350px; }
+        /* --- МЕДИА-ЗАПРОСЫ (АДАПТИВНОСТЬ ПОД В СЕ УСТРОЙСТВА) --- */
+        
+        /* Планшеты и мелкие ноутбуки */
+        @media (max-width: 1100px) {
+            header { padding: 15px 4%; }
+            .hero-section, .section-flavor, .shop-section, .tech-section { padding-left: 4%; padding-right: 4%; }
         }
-    </style>
-</head>
-<body>
 
-    <header>
-        <a href="#" class="logo">papers</a>
-        <nav>
-            <a href="#home">Главная</a>
-            <a href="#matcha">Матча</a>
-            <a href="#grape">Виноград</a>
-            <a href="#pear">Груша</a>
-            <a href="#shops">Где купить</a>
-            <a href="#cartocan">Об упаковке</a>
-        </nav>
-        <div class="header-right">
-            <div class="header-badge">100% organic product</div>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero-section" id="home">
-            <div class="hero-container">
-                <div class="hero-text">
-                    <div class="hero-badge-tag">Концепт новой эко-культуры</div>
-                    <h1>100% натуральный лимонад <span>в эко-банке Cartocan</span></h1>
-                    <p class="hero-desc">Papers — это баланс чистых природных экстрактов и прорывных технологий. Мы отказались от алюминия в пользу сертифицированного картона высокой плотности, чтобы сохранить первозданный вкус напитка и защитить природу.</p>
-                    
-                    <div class="hero-features">
-                        <div class="hero-feat-item"><span>01</span> Без сахара</div>
-                        <div class="hero-feat-item"><span>02</span> Eco-friendly</div>
-                        <div class="hero-feat-item"><span>03</span> Витамины + Mg</div>
-                    </div>
-
-                    <div class="hero-buttons">
-                        <a href="#shops" class="btn-black">Перейти к заказу</a>
-                        <a href="#cartocan" class="btn-outline">Изучить упаковку</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="cans-composite">
-                        <img src="image_5.png" alt="Виноград — Лонган" class="can-composite-img can-grape-hero">
-                        <img src="image_6.png" alt="Матча — Манго" class="can-composite-img can-matcha-hero">
-                        <img src="image_4.png" alt="Груша — Ананас" class="can-composite-img can-pear-hero">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-flavor" id="matcha">
-            <div class="container">
-                <div class="flavor-text">
-                    <h1>Матча — Манго<br><span style="font-weight: 300; font-style: italic;">и сок юдзу</span></h1>
-                    <p class="flavor-desc">Функциональный тоник на основе оригинальной японской матчи. Чистая природная энергия, мягкий фокус и тропическая свежесть спелого манго.</p>
-                    <ul class="flavor-points">
-                        <li>0% добавленного сахара — полностью чистый состав</li>
-                        <li>Обогащено витаминным B-комплексом и магнием</li>
-                        <li>Природные антиоксиданты и тонус на весь день</li>
-                    </ul>
-                    <div class="flavor-icons">
-                        <div class="icon-item"><b>ВИТ. B</b><br>Комплекс</div>
-                        <div class="icon-item"><b>Mg+</b><br>Магний</div>
-                        <div class="icon-item"><b>0%</b><br>Сахара</div>
-                    </div>
-                    <a href="#shops" class="cta-btn">Перейти к заказу</a>
-                </div>
-                <div class="flavor-visual">
-                    <div class="can-wrapper">
-                        <img src="image_6.png" alt="Papers Матча Манго" class="can-img">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-flavor" id="grape">
-            <div class="container">
-                <div class="flavor-visual">
-                    <div class="can-wrapper">
-                        <img src="image_5.png" alt="Papers Виноград Лонган" class="can-img">
-                    </div>
-                </div>
-                <div class="flavor-text">
-                    <h1>Виноград — Лонган<br><span style="font-weight: 300; font-style: italic;">Rosy Gelato</span></h1>
-                    <p class="flavor-desc">Сложный, многогранный вкус. Натуральный сок темного винограда идеально сочетается с экзотическими нотами азиатского лонгана.</p>
-                    <ul class="flavor-points">
-                        <li>100% натуральная соковая основа</li>
-                        <li>Обогащено активным комплексом витамина E и фолиевой кислоты</li>
-                        <li>Идеальный выбор для здоровой альтернативы привычным газировкам</li>
-                    </ul>
-                    <div class="flavor-icons">
-                        <div class="icon-item"><b>ВИТ. E</b><br>Токоферол</div>
-                        <div class="icon-item"><b>B9</b><br>Фолиевая</div>
-                        <div class="icon-item"><b>100%</b><br>Натурально</div>
-                    </div>
-                    <a href="#shops" class="cta-btn">Перейти к заказу</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-flavor" id="pear">
-            <div class="container">
-                <div class="flavor-text">
-                    <h1>Груша — Ананас<br><span style="font-weight: 300; font-style: italic;">на молочном улуне</span></h1>
-                    <p class="flavor-desc">Мягкий чайный бленд. Сливочные полутона китайского чая улун плавно раскрываются за счет текстурной груши и яркой кислинки ананаса.</p>
-                    <ul class="flavor-points">
-                        <li>Настоящий экстракт листового чая улун</li>
-                        <li>Добавлен комплекс Цинка (Zn) и Витамина D3 для иммунитета</li>
-                        <li>Освежающий глубокий вкус без приторности</li>
-                    </ul>
-                    <div class="flavor-icons">
-                        <div class="icon-item"><b>ВИТ. D3</b><br>Иммунитет</div>
-                        <div class="icon-item"><b>ЦИНК</b><br>Цинк (Zn)</div>
-                        <div class="icon-item"><b>ЧАЙ</b><br>Экстракт</div>
-                    </div>
-                    <a href="#shops" class="cta-btn">Перейти к заказу</a>
-                </div>
-                <div class="flavor-visual">
-                    <div class="can-wrapper">
-                        <img src="image_4.png" alt="Papers Груша Ананас" class="can-img">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>Натуральный лимонад Papers</span> <span>•</span>
-            <span>Без добавления сахара</span> <span>•</span>
-            <span>Экологичная упаковка Cartocan</span> <span>•</span>
-            <span>Полная вторичная переработка</span> <span>•</span>
-            <span>Натуральный лимонад Papers</span> <span>•</span>
-            <span>Без добавления сахара</span> <span>•</span>
-        </div>
-    </div>
-
-    <section class="shop-section" id="shops">
-        <h2 class="section-title">Где заказать Papers</h2>
-        <div class="section-subtitle">Официальные каналы дистрибуции и быстрой доставки лимонадов</div>
-        
-        <div class="shop-grid">
-            <div class="shop-card">
-                <div>
-                    <div class="shop-type">Экспресс-доставка (15 минут)</div>
-                    <h3>Самокат</h3>
-                    <p>Мгновенный заказ холодных баночек Papers прямо к вашей двери. Доступно во всех ключевых зонах покрытия.</p>
-                </div>
-                <a href="#" class="shop-link">Перейти в приложение &rarr;</a>
-            </div>
-
-            <div class="shop-card">
-                <div>
-                    <div class="shop-type">Гиперлокальный ритейл</div>
-                    <h3>Яндекс Лавка</h3>
-                    <p>Быстрая доставка комбо-наборов и эксклюзивных лимитированных лимонадов из ближайшего даркстора.</p>
-                </div>
-                <a href="#" class="shop-link">Открыть Лавку &rarr;</a>
-            </div>
-
-            <div class="shop-card">
-                <div>
-                    <div class="shop-type">Премиальные супермаркеты</div>
-                    <h3>Азбука Вкуса</h3>
-                    <p>Фирменные тактильные стойки-банки Papers на полках здорового питания в супермаркетах сети.</p>
-                </div>
-                <a href="#" class="shop-link">Найти магазин &rarr;</a>
-            </div>
-
-            <div class="shop-card">
-                <div>
-                    <div class="shop-type">Эко-ритейл</div>
-                    <h3>ВкусВилл</h3>
-                    <p>Продажи в рамках концепции чистой этикетки. Полностью чистый состав, подтвержденный стандартами качества сети.</p>
-                </div>
-                <a href="#" class="shop-link">Заказать онлайн &rarr;</a>
-            </div>
-
-            <div class="shop-card">
-                <div>
-                    <div class="shop-type">Доставка по всей стране</div>
-                    <h3>OZON / Wildberries</h3>
-                    <p>Заказ фирменных упаковок-боксов (по 6 и 12 штук) с удобной доставкой в любые пункты выдачи.</p>
-                </div>
-                <a href="#" class="shop-link">Купить бокс &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="tech-section" id="cartocan">
-        <h2 class="section-title" style="color: var(--text-light);">Преимущества упаковки Cartocan</h2>
-        <div class="section-subtitle">Технические параметры инновационной упаковки лимонадов Papers</div>
-        
-        <table class="tech-table">
-            <thead>
-                <tr>
-                    <th>Характеристика упаковки</th>
-                    <th>Реализация в проекте Papers</th>
-                    <th>Эффект для потребителя и природы</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><b>Основной материал</b></td>
-                    <td>Многослойный сертифицированный картон высокой плотности</td>
-                    <td>100% вторичная переработка, углеродный след снижен на 60% по сравнению с алюминиевой банкой</td>
-                </tr>
-                <tr>
-                    <td><b>Сохранение свежести</b></td>
-                    <td>Асептическая цилиндрическая формовка без металлических швов</td>
-                    <td>Полная защита напитка от ультрафиолетовых лучей и окисления, идеальное сохранение вкуса</td>
-                </tr>
-                <tr>
-                    <td><b>Тактильный контакт</b></td>
-                    <td>Особое матовое напыление на бумажной основе банки</td>
-                    <td>Уникальное ощущение «теплой» бумажной текстуры в руке, премиальный минималистичный стиль</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <footer>
-        <div class="social-links">
-            <a href="#" target="_blank" class="social-link-item">
-                <img src="vk.png" alt="ВКонтакте" class="social-icon-img">
-            </a>
-            <a href="#" target="_blank" class="social-link-item">
-                <img src="tiktok.png" alt="TikTok" class="social-icon-img">
-            </a>
-        </div>
-        <p>&copy; 2026 Лимонады Papers. Проект концепции натуральных напитков в Cartocan. Все права защищены.</p>
-    </footer>
-
-</body>
-</html>
+        /* Переход в мобильное состояние */
+        @media (max-width: 968px) {
+            header { 
+                position: absolute; 
+                flex-direction: column; 
+                gap: 12px; 
+                padding: 15px 20px;
+                background: #fbfbfa;
+            }
+            .header-right { display: none; } /* Скрываем плашку ради места */
+            nav { flex-wrap: wrap; justify-content: center; gap
